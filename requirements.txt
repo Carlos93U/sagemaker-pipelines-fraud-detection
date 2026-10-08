@@ -1,0 +1,18 @@
+# Dependencias para ejecutar fraud_detection_mlops.ipynb (SageMaker SDK V3).
+#
+# Instalación (en el mismo entorno/kernel donde abrirás el notebook):
+#   pip install -r requirements.txt
+#
+# Nota: solo se listan las librerías que importa el kernel del notebook y el
+# paquete src/fraud_mlops/. Los scripts de code/ (preprocess.py, evaluate.py)
+# corren en contenedores de SageMaker (Processing/Training), que ya traen
+# numpy / pandas / xgboost.
+
+sagemaker>=3.0.0        # SDK V3 de SageMaker: PipelineSession, Pipeline, steps, ...
+boto3>=1.34.0           # Client de AWS (S3, EventBridge, SNS, IAM, invoke endpoint)
+pandas>=2.0.0           # Manipulación del dataset sintético y lectura de CSVs
+numpy>=1.24.0           # Cálculo de métricas y generación de datos
+scikit-learn>=1.3.0     # make_classification y LogisticRegression (baseline)
+matplotlib>=3.8.0       # Visualización del dataset en el notebook
+jupyter>=1.0.0          # Ejecutar el notebook en local
+python-dotenv==1.1.1    # Cargar variables de entorno desde .env (AWS_REGION, SAGEMAKER_ROLE_ARN, SNS_ALERT_EMAIL)

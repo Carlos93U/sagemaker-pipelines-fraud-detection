@@ -1,0 +1,787 @@
+<mxfile host="65bd71144e">
+    <diagram id="i-iconos" name="1. AWS Architecture (icons)">
+        <mxGraphModel dx="5053" dy="967" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2080" pageHeight="1060" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="i_title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#333333;" value="Fraud MLOps — AWS architecture with official icons · numbered flow (1–10)" vertex="1">
+                    <mxGeometry height="50" width="1200" x="40" y="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_note" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=10;fontColor=#999999;" value="Icons from the embedded mxgraph.aws4 library (they render when you open the file in draw.io / diagrams.net / VS Code)." vertex="1">
+                    <mxGeometry height="24" width="900" x="40" y="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_f_loc" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Local environment" vertex="1">
+                    <mxGeometry height="210" width="280" x="40" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_f_s3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Amazon S3 · s3://…/fraud-mlops/" vertex="1">
+                    <mxGeometry height="210" width="280" x="360" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_f_cli" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Client / inference" vertex="1">
+                    <mxGeometry height="210" width="280" x="40" y="650" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_f_cloud" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#232F3E;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="AWS Cloud" vertex="1">
+                    <mxGeometry height="900" width="760" x="680" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_f_pipe" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#01A88D;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Amazon SageMaker · Pipeline fraud-detection-mlops" vertex="1">
+                    <mxGeometry height="430" width="700" x="710" y="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_f_iam" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#BF0816;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="IAM (support roles)" vertex="1">
+                    <mxGeometry height="110" width="700" x="710" y="880" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_f_leg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Legend · numbered flow (steps 1–10)" vertex="1">
+                    <mxGeometry height="900" width="560" x="1470" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F5F5F5;strokeColor=#666666;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=8;fontSize=11;" value="&lt;b&gt;Notebook local (Jupyter)&lt;/b&gt;&lt;br&gt;fraud_detection_mlops.ipynb · SDK V3&lt;br&gt;generates the synthetic dataset" vertex="1">
+                    <mxGeometry height="80" width="230" x="65" y="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=70;spacingRight=8;fontSize=10;" value="&lt;b&gt;Amazon S3&lt;/b&gt;&lt;br&gt;ingest/ · data/ · evaluation.json · model.tar.gz" vertex="1">
+                    <mxGeometry height="80" width="230" x="385" y="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_c4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=70;spacingRight=8;fontSize=11;" value="&lt;b&gt;SplitData&lt;/b&gt; · Processing&lt;br&gt;split 60/20/20 + baseline · cache PT2H" vertex="1">
+                    <mxGeometry height="84" width="290" x="740" y="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_c5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=70;spacingRight=8;fontSize=11;" value="&lt;b&gt;TrainFraudXGB&lt;/b&gt; · Training&lt;br&gt;XGBoost 1.7-1 · ml.m5.large" vertex="1">
+                    <mxGeometry height="84" width="290" x="1080" y="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_c6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=70;spacingRight=8;fontSize=11;" value="&lt;b&gt;EvaluateFraud&lt;/b&gt; · Processing&lt;br&gt;--metric $MetricName → evaluation.json" vertex="1">
+                    <mxGeometry height="84" width="290" x="740" y="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_cond" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=1.5;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;CheckFraudMetric&lt;/b&gt;&lt;br&gt;metric ≥ $MetricThreshold?" vertex="1">
+                    <mxGeometry height="110" width="290" x="1080" y="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_c8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=70;spacingRight=8;fontSize=11;" value="&lt;b&gt;RegisterFraudModel&lt;/b&gt; · ModelStep&lt;br&gt;fraud-detection-mlops-mpg&lt;br&gt;PendingManualApproval" vertex="1">
+                    <mxGeometry height="84" width="290" x="740" y="490" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_cfail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FDECEC;strokeColor=#B85450;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=8;fontSize=11;" value="&lt;b&gt;FraudThresholdNotMet&lt;/b&gt; · FailStep&lt;br&gt;run → Failed" vertex="1">
+                    <mxGeometry height="84" width="290" x="1080" y="490" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_c9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=70;spacingRight=8;fontSize=11;" value="&lt;b&gt;SageMaker Endpoint&lt;/b&gt;&lt;br&gt;fraud-detection-endpoint · ml.m5.large" vertex="1">
+                    <mxGeometry height="84" width="290" x="740" y="650" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=70;spacingRight=8;fontSize=10;" value="&lt;b&gt;EventBridge&lt;/b&gt; · fraud-new-data-trigger&lt;br&gt;S3 ObjectCreated → pipeline" vertex="1">
+                    <mxGeometry height="84" width="290" x="1080" y="650" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_cebf" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=70;spacingRight=8;fontSize=10;" value="&lt;b&gt;EventBridge&lt;/b&gt; · run alerts&lt;br&gt;fraud-pipeline-failed-alert (Failed)&lt;br&gt;fraud-pipeline-started-alert (Executing)" vertex="1">
+                    <mxGeometry height="84" width="290" x="1080" y="770" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_csns" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=70;spacingRight=8;fontSize=11;" value="&lt;b&gt;SNS · fraud-mlops-alerts&lt;/b&gt;&lt;br&gt;confirmed email · start and failure" vertex="1">
+                    <mxGeometry height="84" width="290" x="740" y="770" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_cr1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=64;spacingRight=8;fontSize=10;" value="&lt;b&gt;fraud-mlops-events-role&lt;/b&gt;&lt;br&gt;trust events.amazonaws.com · StartPipelineExecution" vertex="1">
+                    <mxGeometry height="70" width="310" x="740" y="910" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_cr2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#232F3E;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=64;spacingRight=8;fontSize=10;" value="&lt;b&gt;SageMaker role (execution)&lt;/b&gt;&lt;br&gt;Processing · Training · Registry · S3" vertex="1">
+                    <mxGeometry height="70" width="310" x="1070" y="910" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_c10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#D79B00;strokeWidth=1.5;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=8;fontSize=11;" value="&lt;b&gt;Client / inference&lt;/b&gt;&lt;br&gt;invoke([...]) → probability · prediction&lt;br&gt;endpoint cleanup" vertex="1">
+                    <mxGeometry height="80" width="230" x="65" y="700" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_s3" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#3F8624;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" value="" vertex="1">
+                    <mxGeometry height="48" width="48" x="397" y="176" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_split" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sagemaker;" value="" vertex="1">
+                    <mxGeometry height="48" width="48" x="752" y="238" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_train" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sagemaker_train;" value="" vertex="1">
+                    <mxGeometry height="48" width="48" x="1092" y="238" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_eval" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sagemaker;" value="" vertex="1">
+                    <mxGeometry height="48" width="48" x="752" y="378" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_reg" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sagemaker_model;" value="" vertex="1">
+                    <mxGeometry height="48" width="48" x="752" y="508" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_ep" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.endpoint;" value="" vertex="1">
+                    <mxGeometry height="48" width="48" x="752" y="668" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_eb1" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" value="" vertex="1">
+                    <mxGeometry height="48" width="48" x="1092" y="668" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_eb2" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" value="" vertex="1">
+                    <mxGeometry height="48" width="48" x="1092" y="788" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_sns" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sns;" value="" vertex="1">
+                    <mxGeometry height="48" width="48" x="752" y="788" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_role1" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#BF0816;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.role;" value="" vertex="1">
+                    <mxGeometry height="44" width="44" x="752" y="923" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_ic_role2" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#BF0816;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.role;" value="" vertex="1">
+                    <mxGeometry height="44" width="44" x="1082" y="923" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_b1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="1" vertex="1">
+                    <mxGeometry height="30" width="30" x="55" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_b2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="2" vertex="1">
+                    <mxGeometry height="30" width="30" x="375" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_b3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="3" vertex="1">
+                    <mxGeometry height="30" width="30" x="1070" y="640" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_b4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="4" vertex="1">
+                    <mxGeometry height="30" width="30" x="730" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_b5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="5" vertex="1">
+                    <mxGeometry height="30" width="30" x="1070" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_b6" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="6" vertex="1">
+                    <mxGeometry height="30" width="30" x="730" y="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_b7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="7" vertex="1">
+                    <mxGeometry height="30" width="30" x="1210" y="355" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_b8" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="8" vertex="1">
+                    <mxGeometry height="30" width="30" x="730" y="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_b9" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="9" vertex="1">
+                    <mxGeometry height="30" width="30" x="730" y="640" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_b10" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="10" vertex="1">
+                    <mxGeometry height="30" width="30" x="55" y="690" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lb1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="1" vertex="1">
+                    <mxGeometry height="30" width="30" x="1495" y="183" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lt1" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=11;fontColor=#333333;whiteSpace=wrap;" value="&lt;b&gt;Local notebook&lt;/b&gt; — fraud_detection_mlops.ipynb (SDK V3) generates the synthetic dataset (make_classification, 5000×20)." vertex="1">
+                    <mxGeometry height="76" width="470" x="1540" y="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lb2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="2" vertex="1">
+                    <mxGeometry height="30" width="30" x="1495" y="267" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lt2" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=11;fontColor=#333333;whiteSpace=wrap;" value="&lt;b&gt;Amazon S3&lt;/b&gt; — uploads raw.csv to fraud-mlops/ingest/ and stores splits, baseline.json, evaluation.json and model.tar.gz." vertex="1">
+                    <mxGeometry height="76" width="470" x="1540" y="244" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lb3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="3" vertex="1">
+                    <mxGeometry height="30" width="30" x="1495" y="351" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lt3" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=11;fontColor=#333333;whiteSpace=wrap;" value="&lt;b&gt;EventBridge fraud-new-data-trigger&lt;/b&gt; — ObjectCreated on ingest/ launches the pipeline with InputData, MetricName and MetricThreshold." vertex="1">
+                    <mxGeometry height="76" width="470" x="1540" y="328" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lb4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="4" vertex="1">
+                    <mxGeometry height="30" width="30" x="1495" y="435" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lt4" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=11;fontColor=#333333;whiteSpace=wrap;" value="&lt;b&gt;SplitData (Processing)&lt;/b&gt; — split 60/20/20 + baseline LogisticRegression (baseline.json); cache PT2H." vertex="1">
+                    <mxGeometry height="76" width="470" x="1540" y="412" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lb5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="5" vertex="1">
+                    <mxGeometry height="30" width="30" x="1495" y="519" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lt5" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=11;fontColor=#333333;whiteSpace=wrap;" value="&lt;b&gt;TrainFraudXGB (Training)&lt;/b&gt; — XGBoost 1.7-1 on ml.m5.large with train/validation channels (text/csv)." vertex="1">
+                    <mxGeometry height="76" width="470" x="1540" y="496" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lb6" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="6" vertex="1">
+                    <mxGeometry height="30" width="30" x="1495" y="603" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lt6" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=11;fontColor=#333333;whiteSpace=wrap;" value="&lt;b&gt;EvaluateFraud (Processing)&lt;/b&gt; — evaluate.py --metric computes the chosen metric and writes evaluation.json." vertex="1">
+                    <mxGeometry height="76" width="470" x="1540" y="580" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lb7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="7" vertex="1">
+                    <mxGeometry height="30" width="30" x="1495" y="687" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lt7" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=11;fontColor=#333333;whiteSpace=wrap;" value="&lt;b&gt;CheckFraudMetric (Condition)&lt;/b&gt; — metric ≥ threshold? PASS → register; FAIL → FailStep → Failed run → EventBridge (fraud-pipeline-failed-alert) → SNS; the start (Executing) also notifies with fraud-pipeline-started-alert." vertex="1">
+                    <mxGeometry height="76" width="470" x="1540" y="664" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lb8" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="8" vertex="1">
+                    <mxGeometry height="30" width="30" x="1495" y="771" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lt8" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=11;fontColor=#333333;whiteSpace=wrap;" value="&lt;b&gt;RegisterFraudModel (ModelStep)&lt;/b&gt; — version in fraud-detection-mlops-mpg with ModelMetrics and PendingManualApproval." vertex="1">
+                    <mxGeometry height="76" width="470" x="1540" y="748" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lb9" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="9" vertex="1">
+                    <mxGeometry height="30" width="30" x="1495" y="855" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lt9" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=11;fontColor=#333333;whiteSpace=wrap;" value="&lt;b&gt;Approval + deploy&lt;/b&gt; — manual approval (Approved) and idempotent deployment of the fraud-detection-endpoint endpoint (ml.m5.large)." vertex="1">
+                    <mxGeometry height="76" width="470" x="1540" y="832" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lb10" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#FFFFFF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" value="10" vertex="1">
+                    <mxGeometry height="30" width="30" x="1495" y="939" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_lt10" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=11;fontColor=#333333;whiteSpace=wrap;" value="&lt;b&gt;Inference + cleanup&lt;/b&gt; — invoke([time, amount, v01..v20]) returns probability/prediction; deleting the endpoint stops the billing." vertex="1">
+                    <mxGeometry height="76" width="470" x="1540" y="916" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_e1" edge="1" entryDx="0" entryDy="0" entryX="0" entryY="0.5" exitDx="0" exitDy="0" exitX="1" exitY="0.5" parent="1" source="i_c1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_c2" value="2 · upload raw.csv">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_e2" edge="1" entryDx="0" entryDy="0" entryX="0" entryY="0.5" exitDx="0" exitDy="0" exitX="1" exitY="0.5" parent="1" source="i_c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_c4" value="4 · InputData">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="660" y="200"/>
+                            <mxPoint x="660" y="262"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="i_e3" edge="1" entryDx="0" entryDy="0" entryX="0" entryY="0.5" exitDx="0" exitDy="0" exitX="0.5" exitY="1" parent="1" source="i_c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_c3" value="3 · ObjectCreated">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="500" y="750"/>
+                            <mxPoint x="1050" y="750"/>
+                            <mxPoint x="1050" y="692"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="i_e4" edge="1" entryDx="0" entryDy="0" entryX="0.5" entryY="1" exitDx="0" exitDy="0" exitX="0.5" exitY="0" parent="1" source="i_c3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_f_pipe" value="pipeline.start(parameters)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_e5" edge="1" entryDx="0" entryDy="0" entryX="0" entryY="0.5" exitDx="0" exitDy="0" exitX="1" exitY="0.5" parent="1" source="i_c4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_c5" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_e6" edge="1" entryDx="0" entryDy="0" entryX="0.5" entryY="0" exitDx="0" exitDy="0" exitX="0.5" exitY="1" parent="1" source="i_c5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_c6" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1225" y="330"/>
+                            <mxPoint x="885" y="330"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="i_e7" edge="1" entryDx="0" entryDy="0" entryX="0" entryY="0.5" exitDx="0" exitDy="0" exitX="1" exitY="0.5" parent="1" source="i_c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_cond" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_e8" edge="1" entryDx="0" entryDy="0" entryX="0.5" entryY="0" exitDx="0" exitDy="0" exitX="0.5" exitY="1" parent="1" source="i_cond" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_c8" value="PASS">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1225" y="475"/>
+                            <mxPoint x="885" y="475"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="i_e9" edge="1" entryDx="0" entryDy="0" entryX="1" entryY="0.5" exitDx="0" exitDy="0" exitX="1" exitY="0.5" parent="1" source="i_cond" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_cfail" value="FAIL">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1395" y="405"/>
+                            <mxPoint x="1395" y="532"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="i_e10" edge="1" entryDx="0" entryDy="0" entryX="0.5" entryY="0" exitDx="0" exitDy="0" exitX="0.5" exitY="1" parent="1" source="i_c8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_c9" value="9 · approval → Approved">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="i_e11" edge="1" entryDx="0" entryDy="0" entryX="1" entryY="0.5" exitDx="0" exitDy="0" exitX="0" exitY="0.5" parent="1" source="i_c9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_c10" value="10 · invoke">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="330" y="692"/>
+                            <mxPoint x="330" y="740"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="i_e12" edge="1" entryDx="0" entryDy="0" entryX="0.5" entryY="0" exitDx="0" exitDy="0" exitX="0.5" exitY="1" parent="1" source="i_cfail" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_cebf" value="failed">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1395" y="574"/>
+                            <mxPoint x="1395" y="760"/>
+                            <mxPoint x="1225" y="760"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="i_e13" edge="1" entryDx="0" entryDy="0" entryX="1" entryY="0.5" exitDx="0" exitDy="0" exitX="0" exitY="0.5" parent="1" source="i_cebf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#232F3E;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#232F3E;" target="i_csns" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="p1-arquitectura" name="2. AWS Architecture (boxes)">
+        <mxGraphModel dx="5053" dy="967" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1550" pageHeight="1040" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="p1_title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#333333;" value="Fraud MLOps — end-to-end AWS architecture · SageMaker Pipelines (SDK V3)" vertex="1">
+                    <mxGeometry height="50" width="1100" x="40" y="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_f_local" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Origin (local)" vertex="1">
+                    <mxGeometry height="250" width="300" x="40" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_f_s3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Amazon S3 · s3://…/fraud-mlops/" vertex="1">
+                    <mxGeometry height="350" width="320" x="390" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_f_pipe" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6c8ebf;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Amazon SageMaker Pipelines · fraud-detection-mlops" vertex="1">
+                    <mxGeometry height="700" width="430" x="760" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_f_reg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Model Registry" vertex="1">
+                    <mxGeometry height="230" width="240" x="1250" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_f_serv" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d79b00;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Real-time inference" vertex="1">
+                    <mxGeometry height="430" width="240" x="1250" y="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_f_ev" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Events and alerts" vertex="1">
+                    <mxGeometry height="420" width="320" x="390" y="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_f_iam" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="IAM (roles and permissions)" vertex="1">
+                    <mxGeometry height="140" width="430" x="760" y="850" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_f_leg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Legend" vertex="1">
+                    <mxGeometry height="335" width="310" x="40" y="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#999999;dashed=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;fontColor=#333333;" value="&lt;b&gt;Notes&lt;/b&gt;&lt;br&gt;• PT2H cache on SplitData and EvaluateFraud.&lt;br&gt;• Deploy is NOT a pipeline step: the approval triggers it.&lt;br&gt;• Per-run parameters: InputData, MetricName, MetricThreshold, ModelApprovalStatus.&lt;br&gt;• The scripts in code/ are the single source of truth (not generated with %%writefile)." vertex="1">
+                    <mxGeometry height="180" width="310" x="40" y="760" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_notebook" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;fraud_detection_mlops.ipynb&lt;/b&gt;&lt;br&gt;SageMaker SDK V3 · sections 1–14&lt;br&gt;defines and runs the E2E flow" vertex="1">
+                    <mxGeometry height="80" width="240" x="70" y="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_dataset" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;Synthetic dataset&lt;/b&gt;&lt;br&gt;make_classification · 5000 × 20&lt;br&gt;1 = Fraud (imbalanced class)" vertex="1">
+                    <mxGeometry height="80" width="240" x="70" y="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_raw" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;ingest/raw.csv&lt;/b&gt; — landing zone" vertex="1">
+                    <mxGeometry height="45" width="270" x="415" y="155" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_data" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;data/{train,validation,test}/*.csv&lt;/b&gt;&lt;br&gt;holdout 60/20/20 · target first · no header" vertex="1">
+                    <mxGeometry height="50" width="270" x="415" y="215" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_model" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;model-artifacts/…/model.tar.gz&lt;/b&gt;&lt;br&gt;training output" vertex="1">
+                    <mxGeometry height="50" width="270" x="415" y="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_baseline" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;baseline.json&lt;/b&gt;&lt;br&gt;LogisticRegression (threshold + metrics)" vertex="1">
+                    <mxGeometry height="80" width="130" x="415" y="345" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_evaljson" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;evaluation.json&lt;/b&gt;&lt;br&gt;model metrics" vertex="1">
+                    <mxGeometry height="80" width="125" x="560" y="345" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_split" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;1 · SplitData&lt;/b&gt; — ProcessingStep&lt;br&gt;image sklearn 1.4-2 · code/preprocess.py&lt;br&gt;outputs: train/validation/test + baseline.json&lt;br&gt;cache: PT2H" vertex="1">
+                    <mxGeometry height="85" width="370" x="790" y="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_train" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;2 · TrainFraudXGB&lt;/b&gt; — TrainingStep&lt;br&gt;ModelTrainer · XGBoost 1.7-1 · $TrainingInstanceType&lt;br&gt;File channels text/csv: train + validation&lt;br&gt;→ model.tar.gz" vertex="1">
+                    <mxGeometry height="85" width="370" x="790" y="285" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_evaluate" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;3 · EvaluateFraud&lt;/b&gt; — ProcessingStep&lt;br&gt;code/evaluate.py --metric $MetricName&lt;br&gt;model + test → evaluation.json · cache PT2H" vertex="1">
+                    <mxGeometry height="85" width="370" x="790" y="410" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_cond" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;4 · CheckFraudMetric&lt;/b&gt;&lt;br&gt;metric ≥ $MetricThreshold?" vertex="1">
+                    <mxGeometry height="110" width="240" x="855" y="530" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_register" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;5 · RegisterFraudModel&lt;/b&gt;&lt;br&gt;ModelStep · CreateModelPackage&lt;br&gt;ModelMetrics + $ModelApprovalStatus" vertex="1">
+                    <mxGeometry height="95" width="175" x="790" y="680" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_fail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="&lt;b&gt;FraudThresholdNotMet&lt;/b&gt;&lt;br&gt;FailStep → Failed run" vertex="1">
+                    <mxGeometry height="95" width="175" x="985" y="680" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_regnode" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;fraud-detection-mlops-mpg&lt;/b&gt;&lt;br&gt;ModelPackage versionado&lt;br&gt;ModelMetrics: evaluation.json&lt;br&gt;Approval: PendingManualApproval" vertex="1">
+                    <mxGeometry height="150" width="190" x="1275" y="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_approval" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" value="&lt;b&gt;Human approval&lt;/b&gt;&lt;br&gt;PendingManualApproval → Approved" vertex="1">
+                    <mxGeometry height="75" width="190" x="1275" y="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_endpoint" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" value="&lt;b&gt;fraud-detection-endpoint&lt;/b&gt;&lt;br&gt;ml.m5.large · model fraud-detection-xgboost" vertex="1">
+                    <mxGeometry height="85" width="190" x="1275" y="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" value="&lt;b&gt;Client / notebook&lt;/b&gt;&lt;br&gt;invoke([time, amount, v01..v20])&lt;br&gt;→ probability · prediction · threshold" vertex="1">
+                    <mxGeometry height="85" width="190" x="1275" y="675" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_cleanup" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" value="&lt;b&gt;Cleanup&lt;/b&gt; — deletes the endpoint (stops billing)" vertex="1">
+                    <mxGeometry height="45" width="190" x="1275" y="775" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_s3evt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;Evento aws.s3&lt;/b&gt;&lt;br&gt;Object Created · prefix fraud-mlops/ingest/" vertex="1">
+                    <mxGeometry height="70" width="270" x="415" y="570" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_rule1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;fraud-new-data-trigger&lt;/b&gt;&lt;br&gt;EventBridge → starts the pipeline with&lt;br&gt;InputData · MetricName · MetricThreshold" vertex="1">
+                    <mxGeometry height="95" width="270" x="415" y="660" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_rule2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;fraud-pipeline-failed-alert&lt;/b&gt;&lt;br&gt;State Change → Failed (failure email)&lt;br&gt;&lt;b&gt;fraud-pipeline-started-alert&lt;/b&gt;&lt;br&gt;State Change → Executing (start email)&lt;br&gt;filter on detail.pipelineArn" vertex="1">
+                    <mxGeometry height="105" width="270" x="415" y="775" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_sns" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" value="&lt;b&gt;fraud-mlops-alerts&lt;/b&gt; (SNS) — confirmed email (no Lambda)" vertex="1">
+                    <mxGeometry height="45" width="270" x="415" y="895" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_role1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="&lt;b&gt;fraud-mlops-events-role&lt;/b&gt;&lt;br&gt;trust: events.amazonaws.com&lt;br&gt;sagemaker:StartPipelineExecution" vertex="1">
+                    <mxGeometry height="80" width="190" x="790" y="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_role2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="&lt;b&gt;SageMaker role (execution)&lt;/b&gt;&lt;br&gt;Processing · Training · Registry · S3" vertex="1">
+                    <mxGeometry height="80" width="165" x="1000" y="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_lg1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;align=left;spacingLeft=8;" value="Data / storage (S3)" vertex="1">
+                    <mxGeometry height="35" width="260" x="65" y="445" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_lg2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=left;spacingLeft=8;" value="Local (notebook) · IAM" vertex="1">
+                    <mxGeometry height="35" width="260" x="65" y="485" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_lg3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=8;" value="Pipeline steps (SageMaker)" vertex="1">
+                    <mxGeometry height="35" width="260" x="65" y="525" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_lg4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;spacingLeft=8;" value="Quality-gate (Condition) · EventBridge" vertex="1">
+                    <mxGeometry height="35" width="260" x="65" y="565" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_lg5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=left;spacingLeft=8;" value="Model Registry" vertex="1">
+                    <mxGeometry height="35" width="260" x="65" y="605" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_lg6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;align=left;spacingLeft=8;" value="Serving (endpoint) · SNS" vertex="1">
+                    <mxGeometry height="35" width="260" x="65" y="645" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_lg7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;align=left;spacingLeft=8;" value="Fail / Failed run" vertex="1">
+                    <mxGeometry height="35" width="260" x="65" y="685" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_e1" edge="1" parent="1" source="p1_notebook" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#333333;" target="p1_raw" value="upload raw.csv">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="365" y="177"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p1_e2" edge="1" parent="1" source="p1_raw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#333333;" target="p1_split" value="InputData ($InputData)">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="735" y="177"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p1_e3" edge="1" parent="1" source="p1_evaluate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#333333;" target="p1_evaljson" value="evaluation.json">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="720" y="452"/>
+                            <mxPoint x="720" y="385"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p1_e4" edge="1" parent="1" source="p1_rule1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#333333;" target="p1_f_pipe" value="StartPipelineExecution">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="735" y="707"/>
+                            <mxPoint x="735" y="460"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p1_e5" edge="1" parent="1" source="p1_split" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p1_train">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_e6" edge="1" parent="1" source="p1_train" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p1_evaluate">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_e7" edge="1" parent="1" source="p1_evaluate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p1_cond">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_e8" edge="1" parent="1" source="p1_cond" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontStyle=1;fontColor=#2d7d2d;" target="p1_register" value="PASS">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="875" y="585"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p1_e9" edge="1" parent="1" source="p1_cond" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontStyle=1;fontColor=#b85450;" target="p1_fail" value="FAIL">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1075" y="585"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p1_e10" edge="1" parent="1" source="p1_register" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#333333;" target="p1_regnode" value="CreateModelPackage + ModelMetrics">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="875" y="795"/>
+                            <mxPoint x="1210" y="795"/>
+                            <mxPoint x="1210" y="235"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p1_e11" edge="1" parent="1" source="p1_regnode" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10;fontColor=#333333;" target="p1_approval" value="approval: Approved">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_e12" edge="1" parent="1" source="p1_approval" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p1_endpoint">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_e13" edge="1" parent="1" source="p1_endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p1_client">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_e14" edge="1" parent="1" source="p1_client" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#888888;dashed=1;endArrow=block;endFill=1;fontSize=10;fontColor=#888888;" target="p1_cleanup" value="cleanup">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_e15" edge="1" parent="1" source="p1_s3evt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p1_rule1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_e16" edge="1" parent="1" source="p1_rule2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p1_sns">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1_e17" edge="1" parent="1" source="p1_fail" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#888888;dashed=1;endArrow=block;endFill=1;fontSize=10;fontColor=#888888;" target="p1_rule2" value="Pipeline → Failed">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1075" y="820"/>
+                            <mxPoint x="720" y="820"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p1_e18" edge="1" parent="1" source="p1_role1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#888888;dashed=1;endArrow=block;endFill=1;fontSize=10;fontColor=#888888;" target="p1_rule1" value="role assumed by EventBridge">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="745" y="940"/>
+                            <mxPoint x="745" y="741"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p1_e19" edge="1" parent="1" source="p1_role2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#888888;dashed=1;endArrow=block;endFill=1;fontSize=10;fontColor=#888888;" target="p1_f_pipe" value="Processing/Training/Registry permissions">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1082" y="810"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="p2-dag" name="3. Pipeline DAG">
+        <mxGraphModel dx="4459" dy="853" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="930" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="p2_title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#333333;" value="Pipeline DAG · parameters and design decisions (detail in docs/ARCHITECTURE.md)" vertex="1">
+                    <mxGeometry height="50" width="1200" x="40" y="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_f_params" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Pipeline parameters (section 10)" vertex="1">
+                    <mxGeometry height="400" width="340" x="40" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=left;spacingLeft=8;" value="&lt;b&gt;InputData&lt;/b&gt; = s3://…/fraud-mlops/ingest/raw.csv  (ParameterString)" vertex="1">
+                    <mxGeometry height="50" width="290" x="65" y="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=left;spacingLeft=8;" value="&lt;b&gt;TrainingInstanceType&lt;/b&gt; = ml.m5.large  (ParameterString)" vertex="1">
+                    <mxGeometry height="50" width="290" x="65" y="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_p3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=left;spacingLeft=8;" value="&lt;b&gt;MetricName&lt;/b&gt; = roc_auc  (ParameterString)&lt;br&gt;accuracy | precision | recall | f1 | roc_auc" vertex="1">
+                    <mxGeometry height="50" width="290" x="65" y="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_p4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=left;spacingLeft=8;" value="&lt;b&gt;MetricThreshold&lt;/b&gt; = 0.70  (ParameterFloat)" vertex="1">
+                    <mxGeometry height="50" width="290" x="65" y="340" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_p5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=left;spacingLeft=8;" value="&lt;b&gt;ModelApprovalStatus&lt;/b&gt; = PendingManualApproval  (ParameterString)" vertex="1">
+                    <mxGeometry height="50" width="290" x="65" y="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_split" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;1 · SplitData&lt;/b&gt; (ProcessingStep)&lt;br&gt;image: sklearn 1.4-2 (py3)&lt;br&gt;script: code/preprocess.py&lt;br&gt;input: $InputData (raw.csv)&lt;br&gt;output: train / validation / test (60/20/20)&lt;br&gt;+ baseline.json (LogisticRegression)&lt;br&gt;CacheConfig: expire_after = PT2H" vertex="1">
+                    <mxGeometry height="150" width="230" x="450" y="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_train" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;2 · TrainFraudXGB&lt;/b&gt; (TrainingStep)&lt;br&gt;ModelTrainer · XGBoost 1.7-1&lt;br&gt;Compute: $TrainingInstanceType (ml.m5.large)&lt;br&gt;File channels (text/csv):&lt;br&gt;train ← SplitData.Outputs[train]&lt;br&gt;validation ← SplitData.Outputs[validation]&lt;br&gt;binary:logistic · 100 rounds · max_depth 6" vertex="1">
+                    <mxGeometry height="150" width="230" x="730" y="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_evaluate" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;3 · EvaluateFraud&lt;/b&gt; (ProcessingStep)&lt;br&gt;image: XGBoost 1.7-1&lt;br&gt;script: code/evaluate.py --metric $MetricName&lt;br&gt;input: model.tar.gz + test.csv&lt;br&gt;output: evaluation.json&lt;br&gt;fixed key: binary_classification_metrics.metric.value&lt;br&gt;CacheConfig: PT2H" vertex="1">
+                    <mxGeometry height="150" width="230" x="1010" y="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_cond" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;4 · CheckFraudMetric&lt;/b&gt;&lt;br&gt;JsonGet ≥ $MetricThreshold?&lt;br&gt;if: [RegisterFraudModel]&lt;br&gt;else: [FraudThresholdNotMet]" vertex="1">
+                    <mxGeometry height="140" width="280" x="1320" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_register" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;5 · RegisterFraudModel&lt;/b&gt; (ModelStep)&lt;br&gt;ModelBuilder + ModelMetrics (evaluation.json)&lt;br&gt;CreateModelPackage&lt;br&gt;$ModelApprovalStatus = PendingManualApproval&lt;br&gt;inference: ml.m5.large" vertex="1">
+                    <mxGeometry height="130" width="280" x="1330" y="430" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_fail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;FraudThresholdNotMet&lt;/b&gt; (FailStep)&lt;br&gt;error_message → Failed run&lt;br&gt;→ EventBridge → SNS" vertex="1">
+                    <mxGeometry height="110" width="260" x="1010" y="430" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_notes" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=12;fontColor=#333333;" value="&lt;b&gt;Design decisions&lt;/b&gt;&lt;br&gt;• evaluate.py ALWAYS writes the chosen metric under the fixed key binary_classification_metrics.metric.value (JsonGet takes no parameters).&lt;br&gt;• PT2H cache: same input + same code → SplitData is reused; EvaluateFraud recomputes when the trained model changes.&lt;br&gt;• Deploy is NOT a pipeline step: the pipeline only registers (ModelStep); the approval triggers the deployment (section 12 of the notebook).&lt;br&gt;• SDK V3 (sagemaker.mlops): ModelTrainer, ModelBuilder, ModelStep, FailStep, CacheConfig." vertex="1">
+                    <mxGeometry height="180" width="1170" x="430" y="700" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_e_s2t" edge="1" parent="1" source="p2_split" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p2_train">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_e_t2e" edge="1" parent="1" source="p2_train" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p2_evaluate">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_e_e2c" edge="1" parent="1" source="p2_evaluate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p2_cond">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2_e_c2r" edge="1" parent="1" source="p2_cond" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontStyle=1;fontColor=#2d7d2d;" target="p2_register" value="PASS">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1460" y="390"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p2_e_c2f" edge="1" parent="1" source="p2_cond" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontStyle=1;fontColor=#b85450;" target="p2_fail" value="FAIL">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1280" y="280"/>
+                            <mxPoint x="1280" y="390"/>
+                            <mxPoint x="1140" y="390"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p2_e_in" edge="1" parent="1" source="p2_p1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;endArrow=block;endFill=1;fontSize=9;fontColor=#999999;" target="p2_split">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="430" y="185"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p2_e_it" edge="1" parent="1" source="p2_p2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;endArrow=block;endFill=1;fontSize=9;fontColor=#999999;" target="p2_train">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="400" y="245"/>
+                            <mxPoint x="400" y="385"/>
+                            <mxPoint x="845" y="385"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p2_e_mn" edge="1" parent="1" source="p2_p3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;endArrow=block;endFill=1;fontSize=9;fontColor=#999999;" target="p2_evaluate">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="420" y="305"/>
+                            <mxPoint x="420" y="405"/>
+                            <mxPoint x="1125" y="405"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p2_e_mt" edge="1" parent="1" source="p2_p4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;endArrow=block;endFill=1;fontSize=9;fontColor=#999999;" target="p2_cond">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="440" y="365"/>
+                            <mxPoint x="440" y="150"/>
+                            <mxPoint x="1460" y="150"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p2_e_as" edge="1" parent="1" source="p2_p5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;endArrow=block;endFill=1;fontSize=9;fontColor=#999999;" target="p2_register">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="460" y="425"/>
+                            <mxPoint x="460" y="650"/>
+                            <mxPoint x="1300" y="650"/>
+                            <mxPoint x="1300" y="495"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="p3-flujo" name="4. E2E Flow and Operations">
+        <mxGraphModel dx="4459" dy="853" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="960" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="p3_title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#333333;" value="Fraud MLOps — E2E flow, deployment, events and costs" vertex="1">
+                    <mxGeometry height="50" width="1200" x="40" y="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_f_a" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="End-to-end MLOps flow (10 steps)" vertex="1">
+                    <mxGeometry height="760" width="540" x="40" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" value="1. Generate synthetic dataset — make_classification (5000 × 20, imbalanced)" vertex="1">
+                    <mxGeometry height="60" width="490" x="65" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" value="2. Upload to S3 — s3://…/fraud-mlops/ingest/raw.csv" vertex="1">
+                    <mxGeometry height="60" width="490" x="65" y="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="3. Launch pipeline — pipeline.start(parameters) or via EventBridge (ObjectCreated)" vertex="1">
+                    <mxGeometry height="60" width="490" x="65" y="290" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_s4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="4. SplitData — holdout 60/20/20 + baseline LogisticRegression (baseline.json)" vertex="1">
+                    <mxGeometry height="60" width="490" x="65" y="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_s5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="5. TrainFraudXGB — XGBoost (binary:logistic, 100 rounds) on ml.m5.large" vertex="1">
+                    <mxGeometry height="60" width="490" x="65" y="430" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_s6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="6. EvaluateFraud — configurable metric (--metric: roc_auc / f1 / recall / …)" vertex="1">
+                    <mxGeometry height="60" width="490" x="65" y="500" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_s7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="7. CheckFraudMetric — metric ≥ threshold?  FAIL → FailStep → Failed run → EventBridge → SNS alert" vertex="1">
+                    <mxGeometry height="60" width="490" x="65" y="570" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_s8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" value="8. RegisterFraudModel — version + ModelMetrics (PendingManualApproval)" vertex="1">
+                    <mxGeometry height="60" width="490" x="65" y="640" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_s9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" value="9. Human approval → deploy endpoint fraud-detection-endpoint (ml.m5.large)" vertex="1">
+                    <mxGeometry height="60" width="490" x="65" y="710" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_s10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" value="10. Inference + cleanup — invoke → prediction; delete endpoint (billing stops)" vertex="1">
+                    <mxGeometry height="60" width="490" x="65" y="780" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_f_b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Events and alerts (EventBridge + SNS)" vertex="1">
+                    <mxGeometry height="390" width="520" x="620" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Rule fraud-new-data-trigger&lt;/b&gt;&lt;br&gt;event-pattern: aws.s3 · Object Created · bucket + prefix fraud-mlops/ingest/" vertex="1">
+                    <mxGeometry height="80" width="470" x="645" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_b2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Target: SageMaker Pipeline&lt;/b&gt; — SageMakerPipelineParameters: InputData · MetricName · MetricThreshold&lt;br&gt;(role: fraud-mlops-events-role → sagemaker:StartPipelineExecution)" vertex="1">
+                    <mxGeometry height="65" width="470" x="645" y="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_b3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Alert rules&lt;/b&gt;&lt;br&gt;fraud-pipeline-failed-alert → detail.currentPipelineExecutionStatus = Failed&lt;br&gt;fraud-pipeline-started-alert → detail.currentPipelineExecutionStatus = Executing&lt;br&gt;event-pattern: aws.sagemaker · Pipeline Execution State Change · filter detail.pipelineArn" vertex="1">
+                    <mxGeometry height="90" width="470" x="645" y="335" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_b4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;SNS fraud-mlops-alerts&lt;/b&gt; — 1 confirmed email subscription, no Lambda&lt;br&gt;topic policy: events.amazonaws.com → sns:Publish" vertex="1">
+                    <mxGeometry height="55" width="470" x="645" y="425" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_f_c" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Repo structure (GitHub)" vertex="1">
+                    <mxGeometry height="390" width="480" x="1180" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_tree" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=12;fontFamily=Courier New;fontColor=#333333;" value="sagemaker-pipelines-fraud-detection/&#xa;├── README.md                   # overview, architecture and alerts&#xa;├── fraud_detection_mlops.ipynb # E2E notebook (sections 1–14)&#xa;├── requirements.txt · .gitignore&#xa;├── code/                       # run INSIDE the SageMaker containers&#xa;│   ├── preprocess.py           # split 60/20/20 + baseline&#xa;│   └── evaluate.py             # metrics (--metric) + evaluation.json&#xa;├── src/fraud_mlops/            # reusable package (single source of truth)&#xa;│   ├── config.py · session.py · dataset.py&#xa;│   ├── pipeline.py · runner.py&#xa;│   ├── events.py               # EventBridge + SNS + check/diagnostics&#xa;│   ├── deploy.py · inference.py · cleanup.py&#xa;└── docs/&#xa;    ├── ARCHITECTURE.md         # DAG, alerts, IAM, troubleshooting&#xa;    ├── COST.md                 # costs and cleanup&#xa;    └── architecture.drawio     # this diagram (4 pages)" vertex="1">
+                    <mxGeometry height="330" width="430" x="1205" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_f_d" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d79b00;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Deployment and inference (sections 12–13)" vertex="1">
+                    <mxGeometry height="360" width="520" x="620" y="540" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_d1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Approval&lt;/b&gt; — update_model_package_approval_status(Approved) (manual or automatic)" vertex="1">
+                    <mxGeometry height="60" width="470" x="645" y="585" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_d2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Deploy idempotente&lt;/b&gt; — endpoint fraud-detection-endpoint · ml.m5.large · only if Approved" vertex="1">
+                    <mxGeometry height="65" width="470" x="645" y="665" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_d3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;invoke([time, amount, v01..v20])&lt;/b&gt; → {probability, prediction, threshold}" vertex="1">
+                    <mxGeometry height="65" width="470" x="645" y="750" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_d4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Cleanup&lt;/b&gt; — delete endpoint / model: stops hourly billing (always)" vertex="1">
+                    <mxGeometry height="50" width="470" x="645" y="835" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_f_e" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" value="Costs and operations (COST.md)" vertex="1">
+                    <mxGeometry height="360" width="480" x="1180" y="540" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_e1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Cost of a full demo (deploy + 1 h of endpoint) ≈ $0.12–0.15&lt;/b&gt;" vertex="1">
+                    <mxGeometry height="60" width="430" x="1205" y="585" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_e2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;align=left;spacingLeft=8;" value="Endpoint 1 h ≈ $0.10 (dominates the bill)&lt;br&gt;Training ≈ $0.008 · Processing ×2 ≈ $0.01&lt;br&gt;S3 + EventBridge + SNS + IAM ≈ $0" vertex="1">
+                    <mxGeometry height="105" width="430" x="1205" y="665" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_e3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Savings&lt;/b&gt;: PT2H cache · n_samples 5000 → 2000 · always run cleanup" vertex="1">
+                    <mxGeometry height="45" width="430" x="1205" y="790" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_e4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Takeaway&lt;/b&gt;: the pipeline does NOT deploy — it only registers; the approval deploys" vertex="1">
+                    <mxGeometry height="45" width="430" x="1205" y="850" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_a1" edge="1" parent="1" source="p3_s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_s2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_a2" edge="1" parent="1" source="p3_s2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_s3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_a3" edge="1" parent="1" source="p3_s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_s4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_a4" edge="1" parent="1" source="p3_s4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_s5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_a5" edge="1" parent="1" source="p3_s5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_s6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_a6" edge="1" parent="1" source="p3_s6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_s7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_a7" edge="1" parent="1" source="p3_s7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_s8">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_a8" edge="1" parent="1" source="p3_s8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_s9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_a9" edge="1" parent="1" source="p3_s9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_s10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_e_b1" edge="1" parent="1" source="p3_b1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_b2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_e_b3" edge="1" parent="1" source="p3_b3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_b4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_x1" edge="1" parent="1" source="p3_s7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#888888;dashed=1;endArrow=block;endFill=1;fontSize=10;fontColor=#888888;" target="p3_b3" value="Failed run">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="605" y="600"/>
+                            <mxPoint x="605" y="370"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p3_e_d1" edge="1" parent="1" source="p3_d1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_d2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_e_d2" edge="1" parent="1" source="p3_d2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;" target="p3_d3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_e_d3" edge="1" parent="1" source="p3_d3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#888888;dashed=1;endArrow=block;endFill=1;fontSize=10;fontColor=#888888;" target="p3_d4" value="cleanup">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3_x2" edge="1" parent="1" source="p3_s9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#888888;dashed=1;endArrow=block;endFill=1;fontSize=10;fontColor=#888888;" target="p3_d1" value="section 12">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="600" y="740"/>
+                            <mxPoint x="600" y="615"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
