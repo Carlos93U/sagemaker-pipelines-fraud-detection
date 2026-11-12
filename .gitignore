@@ -14,6 +14,7 @@ venv/
 .idea/
 session
 .vscode/
+todo
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
